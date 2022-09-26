@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Story 1, Doctors Show Page' do
   describe 'When I visit a doctors show page' do
-    describe 'I  see all of that doctors information including: name, specialty,university where they got their doctorate' do
+    describe 'I  see all of that doctors information including: name, specialty, university where they got their doctorate' do
       describe 'And I see the name of the hospital where this doctor works' do
         it 'And I see the names of all of the patients this doctor has' do
 
@@ -60,7 +60,15 @@ RSpec.describe 'User Story 1, Doctors Show Page' do
 
             visit doctor_path(doctor1)
             expect(page).to have_content(patient1.name)
-            click_link("Remove #{patient1.name} from #{doctor1.name}'s caseload")
+            
+            within("#patient_#{patient1.id}") do
+              click_link("Remove #{patient1.name} from #{doctor1.name}'s caseload")
+            end
+            
+            within("#patient_#{patient2.id}") do
+              click_link("Remove #{patient2.name} from #{doctor1.name}'s caseload")
+            end
+        
             expect(current_path).to eq(doctor_path(doctor1))
             expect(page).to_not have_content(patient1.name)
 
