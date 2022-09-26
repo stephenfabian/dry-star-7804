@@ -57,7 +57,6 @@ RSpec.describe 'User Story 1, Doctors Show Page' do
             doctor1.patient_doctors.create!(patient_id: patient2.id)
             doctor2.patient_doctors.create!(patient_id: patient3.id)
 
-
             visit doctor_path(doctor1)
             expect(page).to have_content(patient1.name)
             

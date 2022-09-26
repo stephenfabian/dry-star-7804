@@ -5,8 +5,13 @@ class Patient < ApplicationRecord
 
 
   def self.adult_patients_ordered_by_name
+    # Patient.where("age > 18")
+    # .order(:name)
+    # .uniq
+
     Patient.where("age > 18")
-    .order(:name)
+    .order(:name).pluck(:name).uniq
+
   end
 
 end
