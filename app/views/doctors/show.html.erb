@@ -6,6 +6,9 @@
 
 <h2> Patient Names </h2>
 <% @doctor.patients.each do |patient| %>
-  <p> <%= patient.name %> </p>
+  <% if patient.enabled == true %>
+    <p> <%= patient.name %> </p>
+    <p><%= link_to "Remove #{patient.name} from #{@doctor.name}'s caseload", doctor_patient_path(@doctor, patient), method: :patch %></p>
   <% end %>
+ <% end %>
 
